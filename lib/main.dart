@@ -12,7 +12,7 @@ class  Food_Delivery extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(home: HomePage(),
     title: "ChefCode",
-    debugShowCheckedModeBanner: false, 
+    debugShowCheckedModeBanner: false,
     );
   }
 }
