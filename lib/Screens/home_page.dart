@@ -1,43 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:food_deliver_app/models/food_item.dart';
+import 'package:food_deliver_app/widgets/food_gride_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        drawer: Drawer(
-          backgroundColor: Colors.white,
-          child: Center(
-              child: Column(
-            children: [Text("Iam The Drawer")],
-          )),
-        ),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          title: Text(
-            "CHEF CODE",
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(children: [
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 16),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: Image.asset(
-                  "assets/images/classic_burger.jpg",
-                  fit: BoxFit.cover,
-                  height: 200,
-                ),
+              borderRadius: BorderRadius.circular(24),
+              child: Image.asset(
+                "assets/images/classic_burger.jpg",
+                fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height*0.23,
               ),
-              
-          ],),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: food.length,
+              itemBuilder: (context, index) => FoodGridItem(
+                foodItem: food[index],
+              ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+            )
+          ],
         ),
-        );
+      ),
+    );
   }
 }
